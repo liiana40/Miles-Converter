@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!--
+      JavaScript Project 
+
+      Author: M. Liliana Ignat
+      Date: 6/14/2017  
+
+      Filename: index.htm
+   -->
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Project</title>
+   <link rel="stylesheet" href="styles.css" />
+   <script src="modernizr.custom.05819.js"></script>
+</head>
+
+<body>
+   <header>
+      <h1>
+         Project 
+      </h1>
+   </header>
+
+   <article>
+      <h2>Miles (Mi) to Kilometers (Km) converter</h2>
+      <form>
+          <fieldset>
+            <label for="mValue">
+              Enter distance in miles
+            </label>
+            <input type="number" id="mValue" />
+          </fieldset>
+          <fieldset>
+            <button type="button" id="convertButton">Convert to Km</button>
+          </fieldset>
+          <fieldset>
+             <p>Distance in kilometers</p>
+            <p id="kValue"></p>
+          </fieldset>
+     </form>
+   </article>
+   <script>
+      var kilometersElement = document.getElementById("kValue");
+      var milesElement = document.getElementById("mValue");
+      function convert() {
+         var km = Math.round((milesElement.value / 0.621)*100)/100;
+		 document.getElementById('kValue').innerHTML = km;
+         //kilometersElement.innerHTML = km;
+      }
+      
+      // add backward compatible event listener to Convert to Km button and clear form
+      var submitButton = document.getElementById("convertButton");
+      if (submitButton.addEventListener) {
+         submitButton.addEventListener("click", convert, false); 
+         window.addEventListener("load", function() {
+            document.getElementById('mValue').value = ""; // clear last miles value on reload
+            document.getElementById('kValue').innerHTML = ""; // clear previous results on reload 
+         }, false);
+      } else if (submitButton.attachEvent)  {
+         submitButton.attachEvent("onclick", convert);
+         window.attachEvent("onload", function() {
+            document.getElementById('mValue').value = ""; // clear last miles value on reload
+            document.getElementById('kValue').innerHTML = ""; // clear previous results on reload 
+         }, false);
+      }
+	  
+   </script>
+</body>
+</html>
